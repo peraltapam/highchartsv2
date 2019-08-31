@@ -1,0 +1,13 @@
+<div *ngIf="loadTemplate">
+  <highcharts-chart id="container"
+    [Highcharts]="Highcharts"
+    [options]="chartOptions"
+    class="chart-container"
+  ></highcharts-chart>
+</div>
+<div class="error-msg" *ngIf="showErrorMsg">
+  <div>Ooops!</div>
+  <div>Não foi possível carregar o gráfico.</div><br>
+  <div>Por favor, verifique se o servidor está rodando na <strong>porta 3000</strong>.</div>
+  <div>Se não funcionar mesmo assim, vá para <em>app/service/data.service.ts</em> e descomente a linha que captura os dados a partir do arquivo json.</div>
+</div>
