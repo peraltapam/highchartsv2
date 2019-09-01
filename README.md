@@ -1,12 +1,12 @@
 # Highcharts App
 
-App desenvolvido para aplicação da biblioteca [Highcharts](https://www.highcharts.com/) utilizando o Angular 8 framework.
+App desenvolvido para aplicação da biblioteca [Highcharts](https://www.highcharts.com/) utilizando o framework Angular 8.
 
 
 ## Como rodar o projeto
 
 ### Servidor
-- Abrir o terminal na pasta **/pmweb-server/**
+- Abrir um terminal na pasta **/pmweb-server/**
 - Rodar 'npm start'
 - o servidor deve começar a rodar na porta 3000
 
