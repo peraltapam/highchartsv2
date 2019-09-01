@@ -6,14 +6,14 @@ import { HighchartsChartModule } from 'highcharts-angular';
 import { AppComponent } from './app.component';
 import { ChartComponent } from './shared/components/chart/chart.component';
 import { MediaChartComponent } from './components/media-chart/media-chart.component';
-import { DefaultChartComponent } from './components/default-chart/default-chart.component';
+import { LoadingSpinnerComponent } from './shared/components/loading-spinner/loading-spinner.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ChartComponent,
     MediaChartComponent,
-    DefaultChartComponent
+    LoadingSpinnerComponent
   ],
   imports: [
     BrowserModule,

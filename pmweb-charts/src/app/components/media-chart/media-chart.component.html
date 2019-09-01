@@ -1,9 +1,15 @@
+<!-- show spinner while loading chart -->
+<div *ngIf="!loadTemplate">
+  <app-loading-spinner></app-loading-spinner>
+</div>
+<!-- show chart when ready -->
 <div *ngIf="loadTemplate">
   <app-chart [options]="chartOptions" [colors]="chartColors"></app-chart>
 </div>
+<!-- show error message when chart is not available -->
 <div class="error-msg" *ngIf="showErrorMsg">
   <div>Ooops!</div>
   <div>Não foi possível carregar o gráfico.</div><br>
   <div>Por favor, verifique se o servidor está rodando na <strong>porta 3000</strong>.</div>
-  <div>Se não funcionar mesmo assim, vá para <em>app/service/data.service.ts</em> e descomente a linha que captura os dados a partir do arquivo json.</div>
+  <div>Se não funcionar, vá para <em>app/service/data.service.ts</em> e descomente a linha que captura os dados a partir do arquivo json.</div>
 </div>

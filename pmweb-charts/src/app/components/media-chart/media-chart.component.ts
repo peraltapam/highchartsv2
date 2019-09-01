@@ -60,6 +60,7 @@ export class MediaChartComponent implements OnInit {
     },
     tooltip: {
       formatter: function() {
+        // format dot color, date and currency for tootltip
         return `<div>${this.series.name}</div><br/>
           <span style="color:${this.series.color}">\u25CF</span><span>${this.x} :</span>
           <strong>R$ ${this.y.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')}</strong>`;
