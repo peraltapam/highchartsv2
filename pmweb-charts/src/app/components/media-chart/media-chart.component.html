@@ -1,9 +1,5 @@
 <div *ngIf="loadTemplate">
-  <highcharts-chart id="container"
-    [Highcharts]="Highcharts"
-    [options]="chartOptions"
-    class="chart-container"
-  ></highcharts-chart>
+  <app-chart [options]="chartOptions" [colors]="chartColors"></app-chart>
 </div>
 <div class="error-msg" *ngIf="showErrorMsg">
   <div>Ooops!</div>

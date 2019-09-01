@@ -1,17 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 
-import * as Highcharts from 'highcharts';
 import { DataService } from '../../service/data.service';
 
 @Component({
-  selector: 'app-graph',
-  templateUrl: './graph.component.html',
-  styleUrls: ['./graph.component.scss']
+  selector: 'app-media-chart',
+  templateUrl: './media-chart.component.html',
+  styleUrls: ['./media-chart.component.scss']
 })
-export class GraphComponent implements OnInit {
+export class MediaChartComponent implements OnInit {
 
   loadTemplate = false;
   showErrorMsg = false;
+
+  chartColors = [ '#ff0085', '#ffd258', '#00c6ff', '#ff3000', '#3c56cd', '#7500a4'];
 
   chartOptions = {
     title: {
@@ -76,13 +77,11 @@ export class GraphComponent implements OnInit {
 
   rawSeries = [];
 
-  Highcharts = Highcharts;
-
   constructor(private dataService: DataService) {}
 
   // get json data
   fetchData() {
-    this.dataService.getData().subscribe(
+    this.dataService.getMediaData().subscribe(
       data => {
         if(data.success) {
           const revenueData = data.metrics.revenue_by_medium;
@@ -99,7 +98,7 @@ export class GraphComponent implements OnInit {
           this.rawSeries = revenueData.data.series;
 
           // create series array of objects
-          this.createSeries(this.rawSeries[0].data);
+          this.createSeries([...this.rawSeries][0].data);
 
           // populate series arrays
           for(let i = 0; i < this.chartOptions.series.length; i++) {
@@ -107,11 +106,13 @@ export class GraphComponent implements OnInit {
           }
 
           // set x axis data labels
-          this.chartOptions.xAxis.categories = this.rawSeries.map( (serie: {name: string, data: []}) => {
+          this.chartOptions.xAxis.categories = [...this.rawSeries].map( (serie: {name: string, data: []}) => {
             return this.formatBrDate(serie.name);
           });
 
-          this.setChart();
+          //update template
+          this.loadTemplate = true;
+
         } else {
           this.showErrorMsg = true;
         }
@@ -164,18 +165,6 @@ export class GraphComponent implements OnInit {
     const startDate = this.formatBrDate(start);
     const endDate = this.formatBrDate(end);
     return `${startDate} - ${endDate}`;
-  }
-  
-  /**
-   * set highcharts color options
-   * update template
-   */
-  setChart() {
-    // set color pattern
-    Highcharts.setOptions({
-      colors: [ '#ff0085', '#ffd258', '#00c6ff', '#ff3000', '#3c56cd', '#7500a4']
-    });
-    this.loadTemplate = true;
   }
 
   ngOnInit() {
